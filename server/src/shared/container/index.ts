@@ -1,9 +1,9 @@
 import { container } from 'tsyringe';
 
-import IExamplesRepository from '@modules/examples/repositories/IExamplesRepository';
-import ExamplesRepository from '@modules/examples/repositories/ExamplesRepository';
+import IStudentsRepository from '@modules/students/repositories/IStudentsRepository';
+import StudentsRepository from '@modules/students/repositories/StudentsRepository';
 
-container.registerSingleton<IExamplesRepository>(
-  'ExamplesRepository',
-  ExamplesRepository,
+container.registerSingleton<IStudentsRepository>(
+  'StudentsRepository',
+  StudentsRepository,
 );
