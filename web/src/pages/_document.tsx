@@ -52,8 +52,9 @@ export default class MyDocument extends Document {
             href="https://unpkg.com/aos@2.3.1/dist/aos.css"
             rel="stylesheet"
           />
+
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap"
+            href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&amp;family=Poppins:wght@300;400;500;700;900&amp;display=swap"
             rel="stylesheet"
           />
         </Head>

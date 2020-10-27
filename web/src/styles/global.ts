@@ -18,14 +18,7 @@ export default createGlobalStyle`
   input,
   button,
   textarea {
-    font: 400 1.8rem Roboto, sans-serif;
-  }
-
-  body {
-    min-height: 100vh;
-    width: 100%;
-    display: grid;
-    place-items: center;
+    font: 400 1.4rem Poppins, sans-serif;
   }
 
   button {

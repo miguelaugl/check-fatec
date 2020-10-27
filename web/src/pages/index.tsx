@@ -1,14 +1,46 @@
 import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { FiMail, FiLock } from 'react-icons/fi';
 
-import checkFatecLogo from '../assets/check-fatec-logo.png';
+import logoImg from '../assets/logo.png';
 
-import { Container } from '../styles/pages/Home';
+import { Container, Form } from '../styles/pages/Home';
 
 const Home: React.FC = () => {
+  const router = useRouter();
+
+  function handleLoginClick() {
+    router.push('/dashboard');
+  }
+
   return (
     <Container>
-      <h1>Home</h1>
-      <img src={checkFatecLogo} alt="Check Fatec Logo" />
+      <Form>
+        <img src={logoImg} alt="Logo Facheck" />
+
+        <div className="input-group">
+          <input type="text" placeholder="e-mail" />
+          <FiMail size={16} color="#000" />
+        </div>
+
+        <div className="input-group">
+          <input type="text" placeholder="senha" />
+          <FiLock size={16} color="#000" />
+        </div>
+
+        <button type="button" onClick={handleLoginClick}>
+          Login
+        </button>
+
+        <Link href="">Esqueceu a senha?</Link>
+      </Form>
+
+      <div className="sub-form">
+        <p>
+          Não tem uma conta? <Link href="">Cadastre-se</Link>
+        </p>
+      </div>
     </Container>
   );
 };
