@@ -21,7 +21,7 @@ import {
   RegisterButtonTextRed,
 } from './styles';
 
-const Home: React.FC = () => {
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
 
@@ -81,4 +81,4 @@ const Home: React.FC = () => {
   );
 }
 
-export default Home;
+export default SignIn;

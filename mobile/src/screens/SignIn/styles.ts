@@ -43,7 +43,8 @@ export const InputContainer = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  font-size: 16px;
+  font-size: 14px;
+  font-family: 'Poppins_400Regular';
   height: 45px;
   padding: 0 10px;
   width: 100%;
@@ -63,17 +64,19 @@ export const SubmitButton = styled(RectButton)`
 `;
 
 export const SubmitButtonText = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
+  font-family: 'Poppins_400Regular';
 `;
 
 export const ForgotButton = styled.TouchableOpacity``;
 
 export const ForgotButtonText = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
   text-align: center;
   margin-top: 20px;
+  font-family: 'Poppins_400Regular';
 `;
 
 export const SubForm = styled.View`
@@ -90,8 +93,9 @@ export const RegisterButton = styled.TouchableOpacity`
 `;
 
 export const RegisterButtonText = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
+  font-family: 'Poppins_400Regular';
 `;
 
 export const RegisterButtonTextRed = styled(RegisterButtonText)`
