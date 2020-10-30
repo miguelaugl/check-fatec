@@ -4,7 +4,7 @@ import { AppLoading } from 'expo';
 import React from 'react';
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
 
-import SignIn from './src/screens/SignIn';
+import Routes from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-      <SignIn />
+      <Routes />
     </>
   );
 }
