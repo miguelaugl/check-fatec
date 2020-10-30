@@ -27,6 +27,8 @@ class StudentsRepository implements IStudentsRepository {
 
     await this.ormRepository.save(student);
 
+    delete student.password;
+
     return student;
   }
 }
