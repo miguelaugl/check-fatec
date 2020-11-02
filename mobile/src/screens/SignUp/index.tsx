@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import logoImg from '../../assets/logo.png';
 import subImage from '../../assets/grupo-de-amigos.png';
 
+import api from '../../services/api';
+
 import {
   Container,
   Logo,
@@ -17,6 +19,7 @@ import {
   ForgotButton,
   ForgotButtonText,
 } from './styles';
+import { Alert } from 'react-native';
 
 const SignUp: React.FC = () => {
   const navigation = useNavigation();
@@ -27,8 +30,21 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
 
-  function handleRegister() {
-    console.log(email, password);
+  async function handleRegister() {
+    if (password !== confirmPassword) {
+      return Alert.alert('Senhas não batem');
+    };
+
+    const student = {
+      name,
+      ra,
+      email,
+      password,
+    }
+
+    await api.post('/students', student);
+
+    navigation.navigate('Home');
   }
   
   return (
@@ -40,8 +56,8 @@ const SignUp: React.FC = () => {
           <Input
             placeholder="nome completo"
             placeholderTextColor="#000"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+            value={name}
+            onChangeText={(value) => setName(value)}
           />
           <InputIcon name="user" size={22} color="#000" />
         </InputContainer>
@@ -50,8 +66,8 @@ const SignUp: React.FC = () => {
           <Input
             placeholder="RA"
             placeholderTextColor="#000"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+            value={ra}
+            onChangeText={(value) => setRa(value)}
           />
           <InputIcon name="mail" size={22} color="#000" />
         </InputContainer>
@@ -80,8 +96,8 @@ const SignUp: React.FC = () => {
           <Input
             placeholder="confirmar senha"
             placeholderTextColor="#000"
-            value={password}
-            onChangeText={(value) => setPassword(value)}
+            value={confirmPassword}
+            onChangeText={(value) => setConfirmPassword(value)}
           />
           <InputIcon name="lock" size={22} color="#000" />
         </InputContainer>
