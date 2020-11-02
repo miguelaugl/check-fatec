@@ -5,7 +5,7 @@ import { FiMail, FiLock } from 'react-icons/fi';
 
 import logoImg from '../assets/logo.png';
 
-import { Container, Form } from '../styles/pages/Home';
+import { Container, Form } from '../styles/pages/SignIn';
 
 const Home: React.FC = () => {
   const router = useRouter();
@@ -16,9 +16,8 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      <img src={logoImg} alt="Logo Facheck" />
       <Form>
-        <img src={logoImg} alt="Logo Facheck" />
-
         <div className="input-group">
           <input type="text" placeholder="e-mail" />
           <FiMail size={16} color="#000" />
@@ -38,7 +37,7 @@ const Home: React.FC = () => {
 
       <div className="sub-form">
         <p>
-          Não tem uma conta? <Link href="">Cadastre-se</Link>
+          Não tem uma conta? <Link href="/sign-up">Cadastre-se</Link>
         </p>
       </div>
     </Container>

@@ -14,33 +14,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  .sub-form {
-    width: 100%;
-    max-width: 32rem;
-    background: #fff;
-    margin-top: 0.8rem;
-    height: 4.8rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    a {
-      color: ${(props) => props.theme.colors.primary};
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 `;
 
 export const Form = styled.form`
   background: #fff;
   width: 100%;
   max-width: 32rem;
-  height: 33rem;
+  padding: 3rem 0;
 
   display: flex;
   flex-direction: column;
