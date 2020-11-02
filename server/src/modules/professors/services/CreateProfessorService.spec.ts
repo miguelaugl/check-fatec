@@ -5,6 +5,7 @@ import * as faker from 'faker';
 const professorData = {
   name: faker.name.findName(),
   email: faker.internet.email(),
+  cpf: faker.address.zipCode(),
   password: faker.internet.password(),
 };
 

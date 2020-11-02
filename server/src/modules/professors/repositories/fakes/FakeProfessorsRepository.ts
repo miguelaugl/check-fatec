@@ -8,12 +8,13 @@ class FakeProfessorsRepository {
 
   public async create({
     email,
+    cpf,
     name,
     password,
   }: CreateProfessorDTO): Promise<Professor> {
     const professor = new Professor();
 
-    Object.assign(professor, { id: uuid(), email, name, password });
+    Object.assign(professor, { id: uuid(), email, cpf, name, password });
 
     this.professors.push(professor);
 

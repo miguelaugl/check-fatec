@@ -19,10 +19,11 @@ class ProfessorsRepository implements IProfessorsRepository {
 
   public async create({
     email,
+    cpf,
     name,
     password,
   }: CreateProfessorDTO): Promise<Professor> {
-    const professor = this.ormRepository.create({ email, name, password });
+    const professor = this.ormRepository.create({ email, cpf, name, password });
 
     await this.ormRepository.save(professor);
 

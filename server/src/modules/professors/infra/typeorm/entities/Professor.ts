@@ -1,12 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ name: 'professors' })
-class Student {
+class Professor {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   name: string;
+
+  @Column({ unique: true })
+  cpf: string;
 
   @Column({ unique: true })
   email: string;
@@ -18,4 +21,4 @@ class Student {
   avatar: string;
 }
 
-export default Student;
+export default Professor;

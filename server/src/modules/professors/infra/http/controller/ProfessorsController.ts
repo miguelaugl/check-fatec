@@ -7,11 +7,16 @@ export default class ProfessorsController {
   // public async find(request: Request, response: Response): Promise<Response> {}
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
+    const { name, email, cpf, password } = request.body;
 
     const createProfessor = container.resolve(CreateProfessorService);
 
-    const professor = await createProfessor.execute({ name, email, password });
+    const professor = await createProfessor.execute({
+      name,
+      email,
+      cpf,
+      password,
+    });
 
     return response.status(201).json(professor);
   }

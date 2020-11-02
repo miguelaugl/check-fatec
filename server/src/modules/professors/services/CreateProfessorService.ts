@@ -16,6 +16,7 @@ class CreateProfessorService {
   public async execute({
     name,
     email,
+    cpf,
     password,
   }: CreateProfessorDTO): Promise<Professor> {
     const hashedPassword = hashPassword(password);
@@ -23,6 +24,7 @@ class CreateProfessorService {
     const professor = this.professorsRepository.create({
       name,
       email,
+      cpf,
       password: hashedPassword,
     });
 
