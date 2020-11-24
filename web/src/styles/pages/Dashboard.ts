@@ -17,6 +17,9 @@ export const SideBar = styled.aside`
 
   .profile {
     margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   img {
@@ -30,6 +33,7 @@ export const SideBar = styled.aside`
     margin-top: 1rem;
     font-size: 1.6rem;
     font-weight: 700;
+    text-align: center;
   }
 
   @media screen and (max-width: 1110px) {
@@ -57,6 +61,7 @@ export const SideNav = styled.nav`
     color: #fff;
     font-size: 1.6rem;
     padding: 1.5rem 2rem;
+    cursor: pointer;
 
     display: flex;
     align-items: center;

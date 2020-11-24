@@ -20,14 +20,21 @@ import {
   RightSide,
   Student,
 } from '../styles/pages/Dashboard';
+import { useAuth } from '../context/auth';
 
 const Dashboard: React.FC = () => {
+  const { user, signOut } = useAuth();
+
+  function handleLogoutClick() {
+    signOut();
+  }
+
   return (
     <Wrapper>
       <SideBar>
         <div className="profile">
           <img src={profileImg} alt="Imagem de perfil do usuário" />
-          <p>Fábio Santos</p>
+          <p>{user?.name}</p>
         </div>
 
         <SideNav>
@@ -49,12 +56,10 @@ const Dashboard: React.FC = () => {
               Gráficos
             </a>
           </Link>
-          <Link href="/">
-            <a>
-              <FiLogOut size={24} color="#fff" />
-              Logout
-            </a>
-          </Link>
+          <a onClick={handleLogoutClick}>
+            <FiLogOut size={24} color="#fff" />
+            Logout
+          </a>
         </SideNav>
       </SideBar>
       <Container>

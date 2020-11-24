@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiMail, FiLock } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
 import logoImg from '../assets/logo.png';
 
 import { Container, Form } from '../styles/pages/SignIn';
+import { useAuth } from '../context/auth';
 
 const Home: React.FC = () => {
   const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { signIn, signed } = useAuth();
 
   function handleLoginClick() {
-    router.push('/dashboard');
+    signIn(email, password);
+
+    if (signed) {
+      router.push('/dashboard');
+    }
   }
 
   return (
@@ -19,12 +28,22 @@ const Home: React.FC = () => {
       <img src={logoImg} alt="Logo Facheck" />
       <Form>
         <div className="input-group">
-          <input type="text" placeholder="e-mail" />
+          <input
+            type="text"
+            placeholder="e-mail"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
           <FiMail size={16} color="#000" />
         </div>
 
         <div className="input-group">
-          <input type="text" placeholder="senha" />
+          <input
+            type="password"
+            placeholder="senha"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
           <FiLock size={16} color="#000" />
         </div>
 

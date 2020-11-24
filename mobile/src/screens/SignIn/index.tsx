@@ -21,15 +21,17 @@ import {
   RegisterButtonText,
   RegisterButtonTextRed,
 } from './styles';
+import { useAuth } from '../../context/auth';
 
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
-  
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const { signIn } = useAuth();
+
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   function handleLogin() {
-    console.log(email, password);
+    signIn(email, password);
   }
   
   return (
@@ -53,6 +55,7 @@ const SignIn: React.FC = () => {
             placeholderTextColor="#000"
             value={password}
             onChangeText={(value) => setPassword(value)}
+            secureTextEntry={true}
           />
           <InputIcon name="lock" size={22} color="#000" />
         </InputContainer>

@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import AuthenticateProfessorsDTO from '@modules/professors/dtos/AuthenticateProfessorsDTO';
 
+import AppError from '@shared/errors/AppError';
 import authConfig from '../../../config/auth';
 
 import Professor from '../infra/typeorm/entities/Professor';
@@ -32,13 +33,13 @@ class AuthenticateProfessorService {
     const user = await this.professorsRepository.findOne({ email, password });
 
     if (!user) {
-      throw new Error('Incorrect login combination.');
+      throw new AppError('Incorrect login combination.');
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new Error('Incorrect login combination.');
+      throw new AppError('Incorrect login combination.');
     }
 
     const token = sign({}, authConfig.jwt.secret, {

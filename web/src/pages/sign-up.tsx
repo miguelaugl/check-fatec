@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiMail, FiLock, FiUser, FiCreditCard } from 'react-icons/fi';
 
+import Swal from 'sweetalert2';
 import logoImg from '../assets/logo.png';
 import api from '../services/api';
 
@@ -19,7 +20,12 @@ const SignUp: React.FC = () => {
 
   async function handleRegisterClick() {
     if (password !== confirmPassword) {
-      window.alert('Senhas não batem.');
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Senhas não conferem',
+        icon: 'error',
+        confirmButtonText: 'Entendi',
+      });
 
       return;
     }
@@ -33,7 +39,16 @@ const SignUp: React.FC = () => {
 
     await api.post('/professors', professor);
 
-    router.push('/dashboard');
+    router.push('/');
+  }
+
+  function CPFMask(value) {
+    return value
+      .replace(/\D/g, '') // substitui qualquer caracter que nao seja numero por nada
+      .replace(/(\d{3})(\d)/, '$1.$2') // captura 2 grupos de numero o primeiro de 3 e o segundo de 1, apos capturar o primeiro grupo ele adiciona um ponto antes do segundo grupo de numero
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1'); // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
   }
 
   return (
@@ -68,7 +83,7 @@ const SignUp: React.FC = () => {
             type="text"
             value={cpf}
             placeholder="CPF"
-            onChange={(e) => setCpf(e.target.value)}
+            onChange={(e) => setCpf(CPFMask(e.target.value))}
           />
           <FiCreditCard size={16} color="#000" />
         </div>

@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
 
     await api.post('/students', student);
 
-    navigation.navigate('Home');
+    navigation.navigate('SignIn');
   }
   
   return (
@@ -68,6 +68,7 @@ const SignUp: React.FC = () => {
             placeholderTextColor="#000"
             value={ra}
             onChangeText={(value) => setRa(value)}
+            maxLength={13}
           />
           <InputIcon name="mail" size={22} color="#000" />
         </InputContainer>
@@ -88,6 +89,7 @@ const SignUp: React.FC = () => {
             placeholderTextColor="#000"
             value={password}
             onChangeText={(value) => setPassword(value)}
+            secureTextEntry={true}
           />
           <InputIcon name="lock" size={22} color="#000" />
         </InputContainer>
@@ -98,6 +100,7 @@ const SignUp: React.FC = () => {
             placeholderTextColor="#000"
             value={confirmPassword}
             onChangeText={(value) => setConfirmPassword(value)}
+            secureTextEntry={true}
           />
           <InputIcon name="lock" size={22} color="#000" />
         </InputContainer>

@@ -7,13 +7,21 @@ const { Navigator, Screen } = createStackNavigator();
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
+import { useAuth } from '../context/auth';
 
 const StackNavigator: React.FC = () => {
+  const { signed } = useAuth();
+
   return (
     <Navigator headerMode="none">
-      <Screen name="SignIn" component={SignIn} />
-      <Screen name="SignUp" component={SignUp} />
-      <Screen name="Home" component={Home} />
+      {signed ? (
+        <Screen name="Home" component={Home} />
+      ) : (
+        <>
+          <Screen name="SignIn" component={SignIn} />
+          <Screen name="SignUp" component={SignUp} />
+        </>
+      )}
     </Navigator>
   );
 }

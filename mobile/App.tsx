@@ -5,6 +5,7 @@ import React from 'react';
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
 
 import Routes from './src/routes';
+import { AuthProvider } from './src/context/auth';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,8 +18,10 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="auto" />
-      <Routes />
+      <AuthProvider>
+        <StatusBar style="auto" />
+        <Routes />
+      </AuthProvider>
     </>
   );
 }
