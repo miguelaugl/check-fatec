@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import Professor from '@modules/professors/infra/typeorm/entities/Professor';
 import CreateProfessorDTO from '@modules/professors/dtos/CreateProfessorDTO';
+import FindOneProfessorDTO from '@modules/professors/dtos/FindOneProfessorDTO';
 import IProfessorsRepository from './IProfessorsRepository';
 
 class ProfessorsRepository implements IProfessorsRepository {
@@ -11,11 +12,14 @@ class ProfessorsRepository implements IProfessorsRepository {
     this.ormRepository = getRepository(Professor);
   }
 
-  // public async find(): Promise<Professor[]> {
-  //   const students = this.ormRepository.find();
-
-  //   return students;
-  // }
+  public async findOne({
+    email,
+    password,
+  }: FindOneProfessorDTO): Promise<Professor | undefined> {
+    return this.ormRepository.findOne({
+      where: [{ email }, { password }],
+    });
+  }
 
   public async create({
     email,
