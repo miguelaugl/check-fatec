@@ -29,7 +29,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  // const navigation = useNavigation();
 
   useEffect(() => {
     async function loadStorageData() {
@@ -38,7 +37,7 @@ const AuthProvider: React.FC = ({children}) => {
 
       if (storagedUser && storagedToken) {
         setUser(JSON.parse(storagedUser));
-        api.defaults.headers.Authorization = `Baerer ${storagedToken}`;
+        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
       }
 
       setLoading(false);
@@ -59,8 +58,6 @@ const AuthProvider: React.FC = ({children}) => {
 
     localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
     localStorage.setItem('@RNAuth:token', response.data.token);
-
-    // navigation.navigate('Home');
   }
 
   async function signOut() {
