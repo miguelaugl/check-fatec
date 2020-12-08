@@ -23,7 +23,7 @@ const BarCodeScanner: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const {} = await Scanner.requestPermissionsAsync();
+      const { status } = await Scanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);

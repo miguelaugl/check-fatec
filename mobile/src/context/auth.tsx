@@ -1,11 +1,12 @@
 import React, {createContext, useState, useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
-import { useNavigation } from '@react-navigation/native';
 
 interface User {
   name: string;
   email: string;
+  avatar: string;
+  ra: string;
 }
 
 interface Response {
@@ -56,8 +57,8 @@ const AuthProvider: React.FC = ({children}) => {
 
     api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-    localStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
-    localStorage.setItem('@RNAuth:token', response.data.token);
+    AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.data.user));
+    AsyncStorage.setItem('@RNAuth:token', response.data.token);
   }
 
   async function signOut() {

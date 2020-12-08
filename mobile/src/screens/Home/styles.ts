@@ -16,10 +16,18 @@ export const Logo = styled.Image.attrs(() => ({
   width: 150px;
 `;
 
+export const Avatar = styled.Image.attrs(() => ({
+  resizeMode: 'contain',
+}))`
+  height: 120px;
+  margin-bottom: 15px;
+  border-radius: 60px;
+`;
+
 export const SubImage = styled.Image.attrs(() => ({
   resizeMode: 'contain',
 }))`
-  height: 200px;
+  height: 80px;
   margin-top: auto;
 `;
 
