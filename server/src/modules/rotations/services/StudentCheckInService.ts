@@ -16,7 +16,9 @@ class StudentCheckInService {
     rotationId,
     studentId,
   }: StudentCheckInDTO): Promise<Rotation | undefined> {
-    const rotation = this.rotationsRepository.studentCheckIn({
+    console.log(rotationId);
+
+    const rotation = await this.rotationsRepository.studentCheckIn({
       rotationId,
       studentId,
     });

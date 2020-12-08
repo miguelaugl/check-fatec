@@ -28,6 +28,9 @@ class Rotation {
   @Column()
   endTime: string;
 
+  @Column()
+  course: string;
+
   @ManyToOne(() => Professor, professor => professor.rotations)
   @JoinColumn({ name: 'professor_id' })
   professor: Professor;

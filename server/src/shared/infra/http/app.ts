@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import morgan from 'morgan';
 import cors from 'cors';
+import { multerConfig } from '@config/multer';
 
 import AppError from '@shared/errors/AppError';
 import routes from './routes';
@@ -16,6 +17,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('tiny'));
+
+app.use('/files', express.static(multerConfig.directory));
 
 app.use(routes);
 

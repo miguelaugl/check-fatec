@@ -4,4 +4,5 @@ export default interface CreateRotationDTO {
   initTime: string;
   endTime: string;
   professor: string;
+  course: string;
 }

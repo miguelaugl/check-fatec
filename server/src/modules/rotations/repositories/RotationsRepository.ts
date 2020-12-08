@@ -26,9 +26,17 @@ class RotationsRepository implements IRotationsRepository {
   }: StudentCheckInDTO): Promise<Rotation | undefined> {
     const student = await this.studentsRepository.findOne(studentId);
 
-    student.inside = true;
+    if (student) {
+      student.inside = true;
+      await this.studentsRepository.save(student);
+    }
 
-    const rotation = await this.ormRepository.findOne(rotationId);
+    const rotation = await this.ormRepository.findOne({
+      relations: ['students'],
+      where: {
+        id: rotationId,
+      },
+    });
 
     return rotation;
   }
@@ -39,6 +47,7 @@ class RotationsRepository implements IRotationsRepository {
     initTime,
     endTime,
     professor,
+    course,
   }: CreateRotationDTO): Promise<Rotation> {
     const allStudents = await this.studentsRepository.find();
 
@@ -64,6 +73,7 @@ class RotationsRepository implements IRotationsRepository {
       endTime,
       professor: professorSelected,
       students: sortedStudents,
+      course,
     });
 
     await this.ormRepository.save(rotation);

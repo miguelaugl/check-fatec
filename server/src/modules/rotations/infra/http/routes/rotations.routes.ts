@@ -7,7 +7,12 @@ const rotationsRouter = Router();
 const rotationsController = new RotationsController();
 
 rotationsRouter.get(
-  '/:id',
+  '/professor',
+  ensureAuthenticated,
+  rotationsController.getRotationsProfessor,
+);
+rotationsRouter.get(
+  '/:rotationId',
   ensureAuthenticated,
   rotationsController.studentCheckIn,
 );

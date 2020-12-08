@@ -18,6 +18,7 @@ class CreateRotationService {
     initTime,
     endTime,
     professor,
+    course,
   }: CreateRotationDTO): Promise<Rotation> {
     const rotation = this.rotationsRepository.create({
       subject,
@@ -25,6 +26,7 @@ class CreateRotationService {
       initTime,
       endTime,
       professor,
+      course,
     });
 
     return rotation;
