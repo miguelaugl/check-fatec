@@ -2,31 +2,27 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateRotationService from '@modules/rotations/services/CreateRotationService';
-import FindOneRotationService from '@modules/rotations/services/FindOneRotationService';
+import StudentCheckInService from '@modules/rotations/services/StudentCheckInService';
 
 export default class RotationsController {
-  public async findOne(
+  public async studentCheckIn(
     request: Request,
     response: Response,
   ): Promise<Response> {
     const { rotationId } = request.body;
+    const { id: studentId } = request.user;
 
-    const findRotation = container.resolve(FindOneRotationService);
+    const studentCheckIn = container.resolve(StudentCheckInService);
 
-    const rotation = findRotation.execute({ rotationId });
+    const rotation = await studentCheckIn.execute({ rotationId, studentId });
 
-    return response.status(201).json(rotation);
+    return response.json(rotation);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      subject,
-      labNumber,
-      initTime,
-      endTime,
-      professor,
-      students,
-    } = request.body;
+    const { subject, labNumber, initTime, endTime } = request.body;
+
+    const { id } = request.user;
 
     const createRotation = container.resolve(CreateRotationService);
 
@@ -35,8 +31,7 @@ export default class RotationsController {
       labNumber,
       initTime,
       endTime,
-      professor,
-      students,
+      professor: id,
     });
 
     return response.status(201).json(rotation);

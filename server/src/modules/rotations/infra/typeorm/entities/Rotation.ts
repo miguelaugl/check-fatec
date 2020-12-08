@@ -13,7 +13,7 @@ import Student from '@modules/students/infra/typeorm/entities/Student';
 
 @Entity({ name: 'rotations' })
 class Rotation {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

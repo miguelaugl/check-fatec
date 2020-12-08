@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 
 import Rotation from '@modules/rotations/infra/typeorm/entities/Rotation';
 
@@ -32,7 +26,6 @@ class Student {
   inside: boolean;
 
   @ManyToMany(() => Rotation, rotations => rotations.students)
-  @JoinTable()
   rotations: Rotation[];
 }
 

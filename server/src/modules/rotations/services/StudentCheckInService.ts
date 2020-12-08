@@ -3,10 +3,10 @@ import { injectable, inject } from 'tsyringe';
 import Rotation from '@modules/rotations/infra/typeorm/entities/Rotation';
 // import AppError from '@shared/errors/AppError';
 import IRotationsRepository from '@modules/rotations/repositories/IRotationsRepository';
-import FindByIdDTO from '../dtos/FindByIdDTO';
+import StudentCheckInDTO from '../dtos/StudentCheckInDTO';
 
 @injectable()
-class FindOneRotationService {
+class StudentCheckInService {
   constructor(
     @inject('RotationsRepository')
     private rotationsRepository: IRotationsRepository,
@@ -14,13 +14,15 @@ class FindOneRotationService {
 
   public async execute({
     rotationId,
-  }: FindByIdDTO): Promise<Rotation | undefined> {
-    const rotation = this.rotationsRepository.findById({
+    studentId,
+  }: StudentCheckInDTO): Promise<Rotation | undefined> {
+    const rotation = this.rotationsRepository.studentCheckIn({
       rotationId,
+      studentId,
     });
 
     return rotation;
   }
 }
 
-export default FindOneRotationService;
+export default StudentCheckInService;
