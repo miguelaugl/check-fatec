@@ -8,6 +8,7 @@ import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
 import BarCodeScanner from '../screens/BarCodeScanner';
+import Scanned from '../screens/Scanned';
 import { useAuth } from '../context/auth';
 
 const StackNavigator: React.FC = () => {
@@ -19,6 +20,7 @@ const StackNavigator: React.FC = () => {
         <>
           <Screen name="Home" component={Home} />
           <Screen name="BarCodeScanner" component={BarCodeScanner} />
+          <Screen name="Scanned" component={Scanned} />
         </>
       ) : (
         <>

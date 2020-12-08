@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BarCodeScanner as Scanner, BarCodeScannerResult } from 'expo-barcode-scanner';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -12,11 +13,13 @@ import {
 
 import qrMarkerImg from '../../assets/qrmarker.png';
 import logoImg from '../../assets/logo.png';
-import { Alert } from 'react-native';
+import api from '../../services/api';
 
 const BarCodeScanner: React.FC = () => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -25,8 +28,14 @@ const BarCodeScanner: React.FC = () => {
     })();
   }, []);
 
-  function handleBarCodeScanned({ data }: BarCodeScannerResult) {
-    Alert.alert('Leitura realizada com sucesso!', `${data}`);
+  async function handleBarCodeScanned({ data }: BarCodeScannerResult) {
+    const response = await api.get(`/rotations/${data}`);
+
+    setScanned(true);
+
+    navigation.navigate('Scanned', {
+      rotation: response.data,
+    });
   };
 
   return (
@@ -37,7 +46,7 @@ const BarCodeScanner: React.FC = () => {
         <QRMarker source={qrMarkerImg} />
         <QRText>Aponte a câmera para o código QR</QRText>
         <QRScanner
-          onBarCodeScanned={handleBarCodeScanned}
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         />
       </QRContainer>
 

@@ -19,53 +19,46 @@ export const Logo = styled.Image.attrs(() => ({
 export const SubImage = styled.Image.attrs(() => ({
   resizeMode: 'contain',
 }))`
-  height: 200px;
+  /* width: 100%; */
+  height: 150px;
   margin-top: auto;
 `;
 
-export const QRContainer = styled.View`
+export const InformationContainer = styled.View`
+  width: 100%;
   background: #fff;
-  border-radius: 10px;
-  padding: 15px 30px;
+  padding: 30px;
+  margin-top: 10px;
 `;
 
-export const Welcome = styled.Text`
-  font-size: 18px;
+export const Label = styled.Text`
+  font-size: 16px;
   font-family: 'Poppins_700Bold';
-  color: #000;
-  text-align: center;
-  margin-bottom: 15px;
 `;
 
-export const WelcomeRed = styled(Welcome)`
-  color: #fff;
-`;
-
-export const QRMessage = styled.Text`
+export const Information = styled.Text`
   font-size: 15px;
   font-family: 'Poppins_400Regular';
-  color: #000;
-  text-align: center;
 `;
 
-export const QRImage = styled.Image.attrs(() => ({
-  resizeMode: 'contain',
-}))`
-  margin: 0 auto 20px auto;
+export const InformationRow = styled.View`
+  flex-direction: row;
 `;
 
-export const ScanButton = styled(RectButton)`
+export const InformationColumn = styled.View`
+  margin-right: 25px;
+`;
+
+export const Button = styled(RectButton)`
   background: #d91954;
   border-radius: 4px;
   height: 45px;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
 
-export const ScanButtonText = styled.Text`
-  font-size: 15px;
+export const ButtonText = styled.Text`
+  font-size: 14px;
   color: #fff;
   font-family: 'Poppins_400Regular';
-  margin-right: 5px;
 `;

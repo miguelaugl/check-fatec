@@ -32,7 +32,7 @@ const SignUp: React.FC = () => {
 
   async function handleRegister() {
     if (password !== confirmPassword) {
-      return Alert.alert('Senhas não batem');
+      return Alert.alert('Erro ao se cadastrar', 'Senhas não batem');
     };
 
     const student = {
