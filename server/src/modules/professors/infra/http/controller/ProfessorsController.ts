@@ -9,6 +9,7 @@ export default class ProfessorsController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, cpf, password } = request.body;
+    const avatar = request.file?.originalname;
 
     const createProfessor = container.resolve(CreateProfessorService);
 
@@ -17,6 +18,7 @@ export default class ProfessorsController {
       email,
       cpf,
       password,
+      avatar
     });
 
     return response.status(201).json(professor);

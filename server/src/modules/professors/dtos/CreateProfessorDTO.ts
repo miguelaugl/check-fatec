@@ -3,4 +3,5 @@ export default interface CreateProfessorDTO {
   email: string;
   cpf: string;
   password: string;
+  avatar?: string;
 }

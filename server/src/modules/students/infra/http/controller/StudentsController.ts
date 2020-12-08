@@ -9,10 +9,11 @@ export default class StudentsController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, password, ra } = request.body;
+    const avatar = request.file?.originalname;
 
     const createStudent = container.resolve(CreateStudentService);
 
-    const student = await createStudent.execute({ name, email, password, ra });
+    const student = await createStudent.execute({ name, email, password, ra, avatar });
 
     return response.status(201).json(student);
   }

@@ -18,14 +18,15 @@ class CreateStudentService {
     email,
     password,
     ra,
+    avatar
   }: CreateStudentDTO): Promise<Student> {
     const hashedPassword = hashPassword(password);
-
     const student = this.studentsRepository.create({
       name,
       email,
       password: hashedPassword,
       ra,
+      avatar
     });
 
     return student;
