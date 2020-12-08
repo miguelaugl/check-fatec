@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { FiMail, FiLock } from 'react-icons/fi';
-import Swal from 'sweetalert2';
 
 import logoImg from '../assets/logo.png';
 
@@ -10,17 +8,12 @@ import { Container, Form } from '../styles/pages/SignIn';
 import { useAuth } from '../context/auth';
 
 const Home: React.FC = () => {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn, signed } = useAuth();
+  const { signIn } = useAuth();
 
   function handleLoginClick() {
     signIn(email, password);
-
-    if (signed) {
-      router.push('/dashboard');
-    }
   }
 
   return (

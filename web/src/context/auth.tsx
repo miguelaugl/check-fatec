@@ -27,26 +27,9 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   async function loadStorageData() {
-  //     const storagedUser = localStorage.getItem('@RNAuth:user');
-  //     const storagedToken = localStorage.getItem('@RNAuth:token');
-
-  //     if (storagedUser && storagedToken) {
-  //       setUser(JSON.parse(storagedUser));
-  //       api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-  //       router.push('/dashboard');
-  //     }
-
-  //     setLoading(false);
-  //   }
-
-  //   loadStorageData();
-  // });
 
   async function signIn(email: string, password: string) {
     try {
@@ -79,6 +62,20 @@ const AuthProvider: React.FC = ({ children }) => {
 
     router.push('/');
   }
+
+  useEffect(() => {
+    (async () => {
+      const storagedUser = localStorage.getItem('@RNAuth:user');
+      const storagedToken = localStorage.getItem('@RNAuth:token');
+
+      if (storagedUser && storagedToken) {
+        setUser(JSON.parse(storagedUser));
+        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+      }
+
+      setLoading(false);
+    })();
+  }, [router]);
 
   return (
     <AuthContext.Provider

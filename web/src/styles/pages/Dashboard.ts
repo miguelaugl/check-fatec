@@ -1,5 +1,83 @@
 import styled from 'styled-components';
 
+export const Overlay = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalContent = styled.div`
+  width: 100%;
+  max-width: 60rem;
+  background: #fff;
+  padding: 3.2rem;
+  border-radius: 0.5rem;
+
+  h2 {
+    color: #000;
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    font-family: Oswald, sans-serif;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  img {
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .input-group {
+    display: flex;
+  }
+
+  label {
+    font-size: 16px;
+    flex: 1;
+
+    & + label {
+      margin-left: 2rem;
+    }
+
+    input {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+  button {
+    background: ${(props) => props.theme.colors.primary};
+    display: flex;
+    height: 5rem;
+    padding: 0 3rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.4s;
+    font-size: 18px;
+    margin-top: 2rem;
+    margin-left: auto;
+
+    &:hover {
+      background: ${(props) => props.theme.colors.primaryHover};
+    }
+  }
+`;
+
 export const Wrapper = styled.div`
   display: flex;
 `;
@@ -125,12 +203,11 @@ export const LeftSide = styled.div`
     font-family: Oswald, sans-serif;
     font-size: 1.8rem;
     font-weight: 300;
-    margin-bottom: 3rem;
   }
 
   img {
     display: block;
-    margin: 0 auto;
+    margin: 3rem auto 0 auto;
     max-width: 100%;
   }
 
@@ -138,6 +215,23 @@ export const LeftSide = styled.div`
     margin-top: 2rem;
     list-style: none;
     overflow: auto;
+  }
+
+  .create {
+    background: ${(props) => props.theme.colors.primary};
+    display: flex;
+    height: 3.5rem;
+    padding: 0 3rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+    transition: background-color 0.4s;
+
+    &:hover {
+      background: ${(props) => props.theme.colors.primaryHover};
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -213,6 +307,10 @@ export const RightSide = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
     gap: 1rem;
+
+    &:first-of-type {
+      opacity: 0.3;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -226,10 +324,6 @@ export const RightSide = styled.div`
 `;
 
 export const Student = styled.li`
-  &:nth-last-child(-n + 4) {
-    opacity: 0.3;
-  }
-
   display: flex;
   align-items: center;
 
